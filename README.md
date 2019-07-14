@@ -1,2 +1,2 @@
 # LinuxNetDev
-Linux network device drivers
+Linux SPI network device drivers with device tree source
