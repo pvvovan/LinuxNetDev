@@ -26,3 +26,44 @@
 		opp-supported-hw = <0x06 0x0100>;
 	};
 };
+
+&am33xx_pinmux {
+	netdevspi1_pins: pvvspi1_pins {
+		pinctrl-single,pins = <
+			/* MCASP0_ACLKX GPIO3_14 P9-31 SPI1_SCLK */
+			AM33XX_IOPAD(0x990, PIN_INPUT_PULLUP | MUX_MODE3)
+
+			/* MCASP0_FSX GPIO3_15 P9-29 SPI1_DO */
+			AM33XX_IOPAD(0x994, PIN_INPUT_PULLUP | MUX_MODE3)
+
+			/* MCASP0_AXR0 GPIO3_16 P9-30 SPI1_D1 */
+			AM33XX_IOPAD(0x998, PIN_OUTPUT_PULLUP | MUX_MODE3)
+
+			/* MCASP0_AHCLKR GPIO3_17 P9-28 SPI1_CS0 */
+			AM33XX_IOPAD(0x99C, PIN_OUTPUT_PULLUP | MUX_MODE3)
+
+			/* gpmc_ad15 gpio1_14 P8-16 GPIO_INT */
+			AM33XX_IOPAD(0x838, PIN_INPUT | MUX_MODE7)
+		>;
+	};
+};
+
+&i2c2 {
+	status					= "disabled";
+};
+
+&spi1 {
+	#address-cells				= <1>;
+	#size-cells				= <0>;
+	status					= "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&netdevspi1_pins>;
+
+	spidev@1{
+		compatible			= "microchip,enc28j60";
+		reg				= <1>;
+		spi-max-frequency		= <1000000>;
+		interrupt-parent = <&gpio1>;
+		interrupts = <14 GPIO_ACTIVE_LOW>;
+	};
+};
