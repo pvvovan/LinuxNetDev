@@ -1660,22 +1660,7 @@ static struct spi_driver enc28j60_driver = {
 	.probe = enc28j60_probe,
 	.remove = enc28j60_remove,
 };
-
-static int __init enc28j60_init(void)
-{
-	msec20_to_jiffies = msecs_to_jiffies(20);
-
-	return spi_register_driver(&enc28j60_driver);
-}
-
-module_init(enc28j60_init);
-
-static void __exit enc28j60_exit(void)
-{
-	spi_unregister_driver(&enc28j60_driver);
-}
-
-module_exit(enc28j60_exit);
+module_spi_driver(enc28j60_driver);
 
 MODULE_DESCRIPTION(DRV_NAME " ethernet driver");
 MODULE_AUTHOR("Claudio Lanconelli <lanconelli.claudio@eptar.com>");
