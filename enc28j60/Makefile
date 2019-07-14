@@ -12,7 +12,6 @@ clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) C=1 clean
 	rm -f lus-app
 
-#CC = $(CROSS_COMPILE)gcc
 CC = /opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
 CFLAGS = -O2 -Wall -Werror
 
