@@ -59,11 +59,11 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&netdevspi1_pins>;
 
-	spidev@1{
+	spinetdev@0{
 		compatible			= "microchip,enc28j60";
-		reg				= <1>;
+		reg				= <0>;
 		spi-max-frequency		= <1000000>;
-		interrupt-parent = <&gpio1>;
 		interrupts = <14 GPIO_ACTIVE_LOW>;
+		interrupt-parent = <&gpio1>;
 	};
 };
